@@ -13,7 +13,6 @@ jobs:
 
     strategy:
       matrix:
-        target: STM32F401RE
         profile: [release, debug, develop]
         
 
@@ -28,4 +27,4 @@ jobs:
           set -e
           mbed sync
           mbed deploy
-          mbed compile -t GCC_ARM -m ${{ matrix.target }} --profile ${{ matrix.profile }}
+          mbed compile -t GCC_ARM -m STM32F401RE --profile ${{ matrix.profile }}
