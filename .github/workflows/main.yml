@@ -14,15 +14,10 @@ jobs:
     strategy:
       matrix:
         profile: [release, debug, develop]
-        
 
     steps:
-      -
-        name: Checkout
-        uses: actions/checkout@v2
-          
-      -
-        name: build-hl-firmware
+      - uses: actions/checkout@v2
+      - name: build-hl-firmware
         run: |
           set -e
           mbed deploy
