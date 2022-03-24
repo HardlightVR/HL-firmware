@@ -1,0 +1,24 @@
+name: Build HL-firmware
+
+on:
+  pull_request:
+  push:
+
+jobs: 
+  build-cli-v1:
+    container:
+      image: ghcr.io/armmbed/mbed-os-env:master-latest
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        profile: [release, debug, develop]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: build-hl-firmware
+        run: |
+          set -e
+          mbed deploy
+          mbed compile -t GCC_ARM -m STM32F401RE --profile ${{ matrix.profile }}
