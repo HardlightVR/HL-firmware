@@ -25,6 +25,5 @@ jobs:
         name: build-hl-firmware
         run: |
           set -e
-          mbed sync
           mbed deploy
           mbed compile -t GCC_ARM -m STM32F401RE --profile ${{ matrix.profile }}
